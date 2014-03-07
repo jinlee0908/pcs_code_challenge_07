@@ -1,0 +1,133 @@
+html {
+  min-height: 100%;
+  padding-left: 5%
+}
+
+body {
+	color: #555555;
+	background: #FCFBE3;
+	font-family: 'Helvetica' sans-serif;
+}
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 900px;
+}
+
+.head {
+  font-size: 1.5em;
+  padding: 2%;
+  font-style: italic;
+  font-family: 'Helvetica', sans-serif;
+}
+
+footer {
+	margin-top: 10%;	
+}
+
+.foot {
+	text-align:center;
+}
+
+/*=========================== Index & Thanks ===================================*/
+.top {
+  min-height: 220px;
+}
+
+.logo {
+  float: right;
+  width: 30%;
+  padding-right: 2%;
+}
+
+.beside_logo {
+  font-size: 1.3em;
+  padding-left: 5%;
+  height: auto;
+  width: 60%;
+  float:left;
+}
+
+.top h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 2px 0 20px 0;
+}
+
+.top p {
+  margin: 2px 0 4px 0;
+  line-height: 28px;
+}
+/*============================== Index =========================================*/
+.form {
+  margin: 2% 7.5% 2% 7.5%;
+	padding: 2% 5% 7.5% 5%;
+	min-width: 50%;
+	max-width: 70%;
+	background-color: #CDD7B6;
+}
+
+Input[type="text"]{
+	width:60%;
+	height:20px;
+	margin-bottom: 1%;
+}
+
+Input[name="name"]{
+	width:90%;
+}
+
+Input[type="submit"]{
+	font-size: 75%;
+	margin-right: 10%;
+}
+
+.submit_button {
+    border: 1px solid steelblue;
+    background: steelblue;
+    color: #FCFBE3;
+    height:20px;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.submit_button:hover {
+    border: 1px steelblue;
+    background: #eef;
+    color: steelblue;
+}
+
+/*============================== Suckers & Suckers_id============================*/
+
+table{
+border-collapse:collapse;
+width: 80%;
+}
+
+table,th, td{
+border: 1px solid black;
+
+}
+
+th,td{
+  padding: 1.5% 3% 1.5% 3%;
+  text-align: center;
+}
+
+th{
+  background: #CDD7B6;
+}
+
+a:link,
+a:visited {
+  color: steelblue;
+  text-decoration: none;
+}
+
+a:hover {
+  font-weight: bold;
+}

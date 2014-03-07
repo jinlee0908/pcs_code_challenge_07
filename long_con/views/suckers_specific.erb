@@ -1,0 +1,20 @@
+<h1> Suckers</h1>
+
+<p><a href = '/suckers' >Return to listing</a></p>
+
+<table class="sucker_admin">
+  <tr>
+    <th>name</th>
+    <th>email</th>
+    <th>phone</th>
+    <th>twitter</th>
+  </tr>
+      <% @people.each do |person| %>
+        <tr>
+          <td><%= person[:name] %></td>
+          <td><%= person[:email] %></td>
+          <td><%= person[:phone] %></td>
+          <td><%= person[:twitter] %></td>
+        </tr>
+    <% end %>
+</table>
