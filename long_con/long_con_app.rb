@@ -4,12 +4,7 @@ enable :sessions
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-  @test_data = [{ id: 1, name: 'Mrs. Theresa E. Stamm',
-                  email: 'kieran@runte.biz', phone: '1-678-523-6736',
-                  twitter: '@Reinger' },
-                { id: 2, name: 'Keara Maggio',
-                  email: 'cayla@lubowitz.com', phone: '1-399-471-4388 x9581',
-                  twitter: '@Weber' }]
+  @data = '/people20.csv'
 end
 
 get '/' do
@@ -27,7 +22,7 @@ get '/thanks' do
 end
 
 get '/suckers' do
-  @people = @test_data
+  @people = fetch_csv_data(@data)
   erb:suckers
 end
 
