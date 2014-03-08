@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'csv'
-require_relative 'public/parse.rb'
+require_relative 'lib/parse.rb'
 require_relative 'lib/process_csv.rb'
 enable :sessions
 
