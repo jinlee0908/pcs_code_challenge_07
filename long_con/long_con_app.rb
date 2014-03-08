@@ -38,7 +38,7 @@ get '/suckers/:id' do
 end
 
 def write_to_csv(sucker)
-  CSV.open(@data, "a") do |csv|
+  CSV.open(@data_path, "a") do |csv|
     csv << sucker.flatten
   end  
 end
