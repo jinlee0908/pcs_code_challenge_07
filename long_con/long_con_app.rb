@@ -1,21 +1,13 @@
 require 'sinatra'
-<<<<<<< HEAD
 require 'csv'
 require_relative 'public/parse.rb'
-=======
 require_relative './lib/process_csv.rb'
-
->>>>>>> master
 enable :sessions
 
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-<<<<<<< HEAD
   @data_path = "#{settings.public_folder}/people20.csv"
-=======
-  @data = '../public/people20.csv'
->>>>>>> master
 end
 
 get '/' do
@@ -35,12 +27,8 @@ get '/thanks' do
 end
 
 get '/suckers' do
-<<<<<<< HEAD
     # "Dir is: #{settings.public_folder}"
   @people = ProcessCSV.new.fetch_CSV_data(@data_path)
-=======
-  @people = ProcessCSV.new.fetch_CSV_data(@data)
->>>>>>> master
   erb:suckers
 end
 
