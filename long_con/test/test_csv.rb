@@ -7,7 +7,7 @@ class TestCSV < MiniTest::Unit::TestCase
   def test_fetch_suckers_csv_gets_all_rows
     @csv = ProcessCSV.new
     @file = '../public/people20.csv'
-    assert_equal 19, @csv.fetch_CSV_data(@file).count
+    assert_equal 23, @csv.fetch_CSV_data(@file).count
   end
 
   def test_concat_names_method
@@ -39,11 +39,33 @@ class TestCSV < MiniTest::Unit::TestCase
     @csv = ProcessCSV.new
     @test_file = '../public/people20.csv'
     @id = 1
-    expected = {:name=>'Mrs. Theresa E. Stamm',
+    expected = [{:name=>'Mrs. Theresa E. Stamm',
                 :phone => '16785236736',
                 :twitter=> 'Reinger',
                 :email => 'kieran@runte.biz',
-                :id => 1}
+                :id => 1}]
     assert_equal expected, @csv.fetch_single_sucker(@test_file, @id)
   end
+
+  def test_parse_stuff
+    @csv =Parse.new
+    return_array = @csv.parse_stuff('Ciara X. Windler II', '575 225 1469 240', '@Labadie', 'ryan_moore@hagenesmiller.com')
+    expected = [["", "Ciara", "X.", "Windler", "II"], ["", "575", "225", "1469", "240"], ["Labadie"], ["ryan_moore@hagenesmiller.com"]]
+    assert_equal expected, return_array
+  end
+
+  def test_write_to_csv
+    @csv = ProcessCSV.new
+    @testfile = '../test/write_csv_test.csv'
+    expected =  "\"\",Ciara,X.,Windler,II,\"\",575,225,1469,240,Labadie,ryan_moore@hagenesmiller.com\n"
+    suckers = ["","Ciara","X.","Windler","II","","575","225","1469","240","Labadie","ryan_moore@hagenesmiller.com"]
+    return_process = @csv.write_to_csv(@testfile, suckers)
+    actual = File.read('../test/write_csv_test.csv')
+    assert_includes expected, actual
+  end
+
+  # def write_to_csv(filename, sucker)
+  #   CSV.open(filename, "a") do |csv|
+  #     csv << sucker.flatten
+  #   end  
 end
