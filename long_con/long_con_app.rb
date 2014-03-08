@@ -17,10 +17,14 @@ end
 post '/suckers' do
   # @new_sucker = parse_stuff 
   # write_to_csv(@new_sucker)
-  @new_sucker = Parse.new.parse_stuff(params[:name], params[:phone], params[:twitter], params[:email])
-  ProcessCSV.new.write_to_csv(@data_path, @new_sucker)
-  session[:name] = params[:name]
-  redirect '/thanks'
+  if params.empty?
+    redirect '/'
+  else
+    @new_sucker = Parse.new.parse_stuff(params[:name], params[:phone], params[:twitter], params[:email])
+    ProcessCSV.new.write_to_csv(@data_path, @new_sucker)
+    session[:name] = params[:name]
+    redirect '/thanks'
+  end
 end
 
 get '/thanks' do
