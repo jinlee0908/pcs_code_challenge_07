@@ -1,10 +1,12 @@
 require 'sinatra'
+require_relative './lib/process_csv.rb'
+
 enable :sessions
 
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-  @data = '/people20.csv'
+  @data = '../public/people20.csv'
 end
 
 get '/' do
@@ -22,7 +24,7 @@ get '/thanks' do
 end
 
 get '/suckers' do
-  @people = fetch_csv_data(@data)
+  @people = ProcessCSV.new.fetch_CSV_data(@data)
   erb:suckers
 end
 
