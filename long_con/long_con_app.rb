@@ -7,7 +7,7 @@ enable :sessions
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-  @data_path = "#{settings.public_folder}/people20.csv"
+  @data_path = "#{settings.public_folder}/people.csv"
 end
 
 get '/' do

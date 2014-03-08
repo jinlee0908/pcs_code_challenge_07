@@ -21,7 +21,6 @@ class ProcessCSV
     csv = CSV.open(filename)
     csv.drop(id.to_i).each do |row|
       return [concat_row(row)]
-      break
     end
     csv.close
   end
