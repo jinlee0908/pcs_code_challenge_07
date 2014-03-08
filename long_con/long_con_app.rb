@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'csv'
 require_relative 'public/parse.rb'
-require_relative './lib/process_csv.rb'
+require_relative 'lib/process_csv.rb'
 enable :sessions
 
 before do
@@ -27,7 +27,7 @@ get '/thanks' do
 end
 
 get '/suckers' do
-    # "Dir is: #{settings.public_folder}"
+  # "Dir is: #{settings.public_folder}"
   @people = ProcessCSV.new.fetch_CSV_data(@data_path)
   erb:suckers
 end
