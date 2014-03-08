@@ -35,5 +35,15 @@ class TestCSV < MiniTest::Unit::TestCase
     assert_equal expected, @csv.concat_row(@test_row)
   end
 
-
+  def test_fetch_single_sucker
+    @csv = ProcessCSV.new
+    @test_file = '../public/people20.csv'
+    @id = 1
+    expected = {:name=>'Mrs. Theresa E. Stamm',
+                :phone => '16785236736',
+                :twitter=> 'Reinger',
+                :email => 'kieran@runte.biz',
+                :id => 1}
+    assert_equal expected, @csv.fetch_single_sucker(@test_file, @id)
+  end
 end

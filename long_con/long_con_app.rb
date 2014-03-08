@@ -35,7 +35,8 @@ get '/suckers' do
 end
 
 get '/suckers/:id' do
-  @people = @test_data.select { |person| person[:id] == params[:id].to_i }
+  #@people = @test_data.select { |person| person[:id] == params[:id].to_i }
+  @people = ProcessCSV.new.fetch_single_sucker(@data_path, params[:id])
   erb:suckers_specific
 end
 

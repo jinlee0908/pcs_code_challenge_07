@@ -10,14 +10,23 @@ class ProcessCSV
   def fetch_CSV_data(filename)
     data_array = []
     #open csv, iterate through csv, concatenate fields, hash concatenated fields, put in array
-    # csv = CSV.open(filename)
-    # csv.drop(1).each do |row|
     csv = CSV.open(filename)
     csv.drop(1).each do |row|
       data_array << concat_row(row)
     end
     csv.close
     data_array
+  end
+
+  def fetch_single_sucker(filename, id)
+    csv = CSV.open(filename)
+    csv.drop(id.to_i).each do |row|
+      binding.pry
+      return concat_row(row)
+      binding.pry
+      break
+    end
+    csv.close
   end
 
   def concat_row(row_array)
