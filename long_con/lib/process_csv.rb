@@ -3,7 +3,6 @@ require 'pry'
 # this class processes csv data from the sinatra app
 
 class ProcessCSV
-
   def initialize
     @count = 0 #fake ID counter for hash array
   end
@@ -53,16 +52,4 @@ class ProcessCSV
       csv << sucker.flatten
     end  
   end
-
-  def parse_stuff(name, phone, twitter, email)
-    @prefixes = ["Mrs.", "Miss", "Ms", "Dr.", "Mr.","mrs.", "miss", "ms", "dr.", "mr."]
-    @suffixes = ["DDS", "MD", "Sr.", "IV", "DVM", "I", "II", "Jr.", "V", "III", "Phd"]
-    csv_ready = []
-    csv_ready << Parse.parse_names(@prefixes, @suffixes, name)
-    csv_ready << Parse.parse_numbers(phone)
-    csv_ready << Parse.parse_twitter(twitter)
-    csv_ready << Parse.parse_email(email)
-    csv_ready
-  end
-
 end
