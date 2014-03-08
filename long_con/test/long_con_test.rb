@@ -38,11 +38,11 @@ class MyTest < MiniTest::Unit::TestCase
     assert last_response.ok?
   end
 
-  def test_name_on_thanks
-    post '/suckers', name: 'Jin'
-    follow_redirect!
-    assert last_response.body.include?('Jin')
-  end
+  # def test_name_on_thanks
+  #   post '/suckers', name: 'Jin'
+  #   follow_redirect!
+  #   assert last_response.body.include?('Jin')
+  # end
 
   def test_suckers_on_suckers_page
     get '/suckers'
