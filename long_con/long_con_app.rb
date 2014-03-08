@@ -6,7 +6,7 @@ enable :sessions
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-  @data = '../people20.csv'
+  @data_path = "#{settings.public_folder}/people20.csv"
 end
 
 get '/' do
@@ -26,7 +26,8 @@ get '/thanks' do
 end
 
 get '/suckers' do
-  @people = @data
+    # "Dir is: #{settings.public_folder}"
+  @people = ProcessCSV.new.fetch_CSV_data(@data_path)
   erb:suckers
 end
 
