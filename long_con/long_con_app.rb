@@ -47,8 +47,8 @@ def parse_stuff
   @suffixes = ["DDS", "MD", "Sr.", "IV", "DVM", "I", "II", "Jr.", "V", "III", "Phd"]
   csv_ready = []
   csv_ready << Parse.parse_names(@prefixes, @suffixes, params[:name])
+  csv_ready<< Parse.parse_numbers(params[:phone])
   csv_ready << Parse.parse_twitter(params[:twitter])
   csv_ready << Parse.parse_email(params[:email])
-  csv_ready << Parse.parse_numbers(params[:phone])
   csv_ready
 end
