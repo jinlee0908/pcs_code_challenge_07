@@ -1,15 +1,14 @@
 require 'csv'
 require 'pry'
-# this class processes csv data from the sinatra app
 
+# this class processes csv data from the sinatra app
 class ProcessCSV
   def initialize
-    @count = 0 #fake ID counter for hash array
+    @count = 0 # fake ID counter for hash array
   end
 
-  def fetch_CSV_data(filename)
+  def fetch_suckers_data(filename)
     data_array = []
-    #open csv, iterate through csv, concatenate fields, hash concatenated fields, put in array
     csv = CSV.open(filename)
     csv.drop(1).each do |row|
       data_array << concat_row(row)
@@ -39,7 +38,7 @@ class ProcessCSV
   end
 
   def concat_names(name_array)
-    name = ""
+    name = ''
     name_array.each do |n|
       n.empty? ? next : name = name + n + ' '
     end
@@ -47,16 +46,16 @@ class ProcessCSV
   end
 
   def concat_phone(phone_array)
-    phone = ""
+    phone = ''
     phone_array.each do |p|
       p.to_s.empty? ? next : phone = phone + p.to_s
-    end 
+    end
     phone
   end
 
   def write_to_csv(filename, sucker)
-    CSV.open(filename, "a") do |csv|
+    CSV.open(filename, 'a') do |csv|
       csv << sucker.flatten
-    end  
+    end
   end
 end

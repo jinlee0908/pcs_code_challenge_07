@@ -15,8 +15,6 @@ get '/' do
 end
 
 post '/suckers' do
-  # @new_sucker = parse_stuff 
-  # write_to_csv(@new_sucker)
   if params.empty?
     redirect '/'
   else
@@ -34,7 +32,7 @@ end
 
 get '/suckers' do
   # "Dir is: #{settings.public_folder}"
-  @people = ProcessCSV.new.fetch_CSV_data(@data_path)
+  @people = ProcessCSV.new.fetch_suckers_data(@data_path)
   erb:suckers
 end
 
@@ -42,5 +40,3 @@ get '/suckers/:id' do
   @people = ProcessCSV.new.fetch_single_sucker(@data_path, params[:id])
   erb:suckers_specific
 end
-
-

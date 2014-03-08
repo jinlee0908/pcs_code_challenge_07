@@ -1,8 +1,8 @@
+# this class is parsing form data for the suckers
 class Parse
-
   def parse_stuff(name, phone, twitter, email)
-    @prefixes = ["Mrs.", "Miss", "Ms", "Dr.", "Mr.","mrs.", "miss", "ms", "dr.", "mr."]
-    @suffixes = ["DDS", "MD", "Sr.", "IV", "DVM", "I", "II", "Jr.", "V", "III", "Phd"]
+    @prefixes = ['Mrs.', 'Miss', 'Ms', 'Dr.', 'Mr.', 'mrs.', 'miss', 'ms', 'dr.', 'mr.']
+    @suffixes = ['DDS', 'MD', 'Sr.', 'IV', 'DVM', 'I', 'II', 'Jr.', 'V', 'III', 'Phd']
     csv_ready = []
     csv_ready << Parse.parse_names(@prefixes, @suffixes, name)
     csv_ready << Parse.parse_numbers(phone)
@@ -10,7 +10,6 @@ class Parse
     csv_ready << Parse.parse_email(email)
     csv_ready
   end
-
 
   def self.parse_names(prefixes, suffixes, name_string)
     parsed_name = { pre: '', first: '', middle: '', last: '', suffix: '' }
