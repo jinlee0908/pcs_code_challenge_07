@@ -21,9 +21,7 @@ class ProcessCSV
   def fetch_single_sucker(filename, id)
     csv = CSV.open(filename)
     csv.drop(id.to_i).each do |row|
-      binding.pry
-      return concat_row(row)
-      binding.pry
+      return [concat_row(row)]
       break
     end
     csv.close
