@@ -1,5 +1,5 @@
 require 'data_mapper'
-require 'parse.rb'
+require_relative 'parse.rb'
 
 # Sucker object
 class Sucker
@@ -25,23 +25,24 @@ class Sucker
   def initialize(name, phone, twitter, email)
     #remember we got to change the suffix and prefix in parse module
     parsed_names = Parse.parse_names(name)
-    :prefix_name = parsed_names[:pre]
-    :first_name = parsed_names[:first]
-    :middle_name = parsed_names[:middle]
-    :last_name = parsed_names[:last]
-    :suffix = parsed_names[:suffix]
-    parsed_number = Parse.parse_number(phone)
-    :country_code = parsed_number[:country]
-    :area_code = parsed_number[:area]
-    :prefix_code = parsed_number[:prefix]
-    :line = parsed_number[:line]
-    :extension = parsed_number[:ext]
+    self.prefix_name = parsed_names[:pre]
+    self.first_name = parsed_names[:first]
+    self.middle_name = parsed_names[:middle]
+    self.last_name = parsed_names[:last]
+    self.suffix = parsed_names[:suffix]
     
-    :twitter = Parse.parse_twitter(twitter)
-    :email = Parse.parse_email(email)
+    parsed_number = Parse.parse_number(phone)
+    self.country_code = parsed_number[:country]
+    self.area_code = parsed_number[:area]
+    self.prefix_code = parsed_number[:prefix]
+    self.line = parsed_number[:line]
+    self.extension = parsed_number[:ext]
+    
+    self.twitter = Parse.parse_twitter(twitter)
+    self.email = Parse.parse_email(email)
   end
 
-  def display_name(sucker)
+  def display_name
     name = [sucker[:prefix_name], 
             sucker[:first_name], 
             sucker[:middle_name],
@@ -50,7 +51,7 @@ class Sucker
     name.select{ |i| i.size > 0 }.join(' ')
   end
 
-  def display_phone(sucker)
+  def display_phone
     phone = [sucker[:country_code],
              sucker[:area_code],
              sucker[:prefix_code],

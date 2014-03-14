@@ -18,25 +18,26 @@ class TestSucker < MiniTest::Unit::TestCase
                       twitter: 'Reinger',
                       email: 'kieran@runte.biz' 
                       }
-    @sucker = Sucker.new
+
   end
 
-  def teardown
-    @sucker.destroy
-  end
+  # def teardown
+  #   @sucker.destroy
+  # end
 
   def test_sucker_can_display_name
+    @sucker = Sucker.new()
     expected = 'Mrs. Theresa E. Stamm'
-    assert_equal expected, @sucker.display_name(@test_sucker)
+    assert_equal expected, @sucker.display_name
   end
 
   def test_sucker_can_display_phone
     expected = '1-678-523-6736'
-    assert_equal expected, @sucker.display_phone(@test_sucker)
+    assert_equal expected, Sucker.new.display_phone(@test_sucker)
   end
 
   def test_sucker_exists
-    assert_instance_of Sucker, @sucker
+    assert_instance_of Sucker, Sucker.new
   end
 
   def test_create_a_sucker

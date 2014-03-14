@@ -1,8 +1,10 @@
 require 'sinatra'
 require 'data_mapper'
-require_relative 'lib/parse.rb'
+require_relative 'lib/sucker.rb'
 
 enable :sessions
+
+DataMapper.setup(:default, "sqlite3://#{settings.root}/suckers20.sqlite3")
 
 before do
   @heading = 'Born Every Minute'
@@ -27,7 +29,7 @@ end
 
 get '/suckers' do
   # "Dir is: #{settings.public_folder}"
-  @people = ProcessCSV.new.fetch_suckers_data(@data_path)
+  @suckers = Sucker.all
   erb:suckers
 end
 

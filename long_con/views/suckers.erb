@@ -7,7 +7,7 @@
   <th>name</th>
   <th>email</th>
 </tr>
-<% @people.each do |person| %>
+<% @suckers.each do |person| %>
   <tr>
     <td><a href= 'suckers/<%= person[:id]%>'><%= person[:name] %></a></td>
     <td><a href= 'suckers/<%= person[:id]%>'><%= person[:email] %></a></td>
