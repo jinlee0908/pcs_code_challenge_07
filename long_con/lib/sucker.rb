@@ -22,24 +22,24 @@ class Sucker
   property :email, String, :required => true
   property :created_at, DateTime
 
-  def initialize(name, phone, twitter, email)
+  def initialize(params)
     #remember we got to change the suffix and prefix in parse module
-    parsed_names = Parse.parse_names(name)
+    parsed_names = parse_names(params[:name])
     self.prefix_name = parsed_names[:pre]
     self.first_name = parsed_names[:first]
     self.middle_name = parsed_names[:middle]
     self.last_name = parsed_names[:last]
     self.suffix = parsed_names[:suffix]
     
-    parsed_number = Parse.parse_number(phone)
+    parsed_number = parse_numbers(params[:phone])
     self.country_code = parsed_number[:country]
     self.area_code = parsed_number[:area]
     self.prefix_code = parsed_number[:prefix]
     self.line = parsed_number[:line]
     self.extension = parsed_number[:ext]
     
-    self.twitter = Parse.parse_twitter(twitter)
-    self.email = Parse.parse_email(email)
+    self.twitter = parse_twitter(params[:twitter])
+    self.email = parse_email(params[:email])
   end
 
   def display_name

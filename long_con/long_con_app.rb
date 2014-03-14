@@ -16,7 +16,7 @@ get '/' do
 end
 
 post '/suckers' do
-  Sucker.create(params[:name], params[:phone], params[:twitter], params[:email])
+  Sucker.create(params)
   session[:name] = params[:name]
   redirect '/thanks'
 end
