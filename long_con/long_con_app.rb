@@ -1,13 +1,13 @@
 require 'sinatra'
-require 'csv'
+require 'data_mapper'
 require_relative 'lib/parse.rb'
-require_relative 'lib/process_csv.rb'
+
 enable :sessions
 
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-  @data_path = "#{settings.public_folder}/people20.csv"
+  @data_path = "#{settings.public_folder}/people20.sqlite3"
 end
 
 get '/' do
@@ -15,14 +15,9 @@ get '/' do
 end
 
 post '/suckers' do
-  if params.empty?
-    redirect '/'
-  else
-    @new_sucker = Parse.new.parse_stuff(params[:name], params[:phone], params[:twitter], params[:email])
-    ProcessCSV.new.write_to_csv(@data_path, @new_sucker)
-    session[:name] = params[:name]
-    redirect '/thanks'
-  end
+  Sucker.create (params[:sucker])
+  session[:name] = params[:name]
+  redirect '/thanks'
 end
 
 get '/thanks' do
