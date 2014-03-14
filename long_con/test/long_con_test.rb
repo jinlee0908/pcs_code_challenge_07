@@ -1,16 +1,11 @@
 require './long_con_test_helper.rb'
 
 before do
-  @test_data = [{ id: 1,
+  @test_data = { id: 1,
                   name: 'Mrs. Theresa E. Stamm',
                   email: 'kieran@runte.biz',
                   phone: '1-678-523-6736',
-                  twitter: '@Reinger' },
-                { id: 2,
-                  name: 'Keara Maggio',
-                  email: 'cayla@lubowitz.com',
-                  phone: '1-399-471-4388 x9581',
-                  twitter: '@Weber' }]
+                  twitter: '@Reinger' }
 end
 
 # test class
@@ -39,9 +34,21 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-    post '/suckers', name: 'Jin'
+    post '/suckers', @test_data
     follow_redirect!
-    assert last_response.body.include?('Jin')
+    assert_equal suckers.last, { prefix: 'Mrs.',
+                      first_name: 'Theresa',
+                      middle_name: 'E.',
+                      last_name: 'Stamm',
+                      suffix: '',
+                      country_code: 1,
+                      area_code: 678,
+                      prefix_code: 523,
+                      line: 6736,
+                      extension: '',
+                      twitter: 'Reinger',
+                      email: 'kieran@runte.biz' 
+                      }
   end
 
   def test_suckers_on_suckers_page
