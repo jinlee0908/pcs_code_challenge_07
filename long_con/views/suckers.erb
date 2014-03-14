@@ -9,7 +9,7 @@
 </tr>
 <% @suckers.each do |person| %>
   <tr>
-    <td><a href= 'suckers/<%= person[:id]%>'><%= person[:name] %></a></td>
+    <td><a href= 'suckers/<%= person[:id]%>'><%= person.display_name %></a></td>
     <td><a href= 'suckers/<%= person[:id]%>'><%= person[:email] %></a></td>
   </tr>
 <% end %>

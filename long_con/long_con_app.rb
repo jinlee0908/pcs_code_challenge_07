@@ -9,7 +9,6 @@ DataMapper.setup(:default, "sqlite3://#{settings.root}/suckers20.sqlite3")
 before do
   @heading = 'Born Every Minute'
   @foot = 'Copyright &copy 2014 The Long Con LLC'
-  @data_path = "#{settings.public_folder}/people20.sqlite3"
 end
 
 get '/' do
@@ -17,7 +16,7 @@ get '/' do
 end
 
 post '/suckers' do
-  Sucker.create (params[:sucker])
+  Sucker.create(params[:name], params[:phone], params[:twitter], params[:email])
   session[:name] = params[:name]
   redirect '/thanks'
 end
@@ -34,6 +33,6 @@ get '/suckers' do
 end
 
 get '/suckers/:id' do
-  @people = ProcessCSV.new.fetch_single_sucker(@data_path, params[:id])
+  @sucker = Sucker.find(params[:id])
   erb:suckers_specific
 end

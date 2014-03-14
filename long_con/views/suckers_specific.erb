@@ -9,11 +9,11 @@
     <th>phone</th>
     <th>twitter</th>
   </tr>
-      <% @people.each do |person| %>
+      <% @sucker.each do |person| %>
         <tr>
-          <td><%= person[:name] %></td>
+          <td><%= person.display_name %></td>
           <td><%= person[:email] %></td>
-          <td><%= person[:phone] %></td>
+          <td><%= person.display_phone %></td>
           <td><%= person[:twitter] %></td>
         </tr>
     <% end %>

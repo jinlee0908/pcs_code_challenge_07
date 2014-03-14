@@ -43,25 +43,21 @@ class Sucker
   end
 
   def display_name
-    name = [sucker[:prefix_name], 
-            sucker[:first_name], 
-            sucker[:middle_name],
-            sucker[:last_name],
-            sucker[:suffix]]
+    name = [self.prefix_name, 
+            self.first_name, 
+            self.middle_name,
+            self.last_name,
+            self.suffix]
     name.select{ |i| i.size > 0 }.join(' ')
   end
 
   def display_phone
-    phone = [sucker[:country_code],
-             sucker[:area_code],
-             sucker[:prefix_code],
-             sucker[:line],
-             sucker[:extension]]
+    phone = [self.country_code,
+             self.area_code,
+             self.prefix_code,
+             self.line,
+             self.extension]
     phone.select{ |i| i.size > 0 }.join('-') 
-  end
-
-  def display_sucker
-
   end
 
 end
