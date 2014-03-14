@@ -16,8 +16,8 @@ get '/' do
 end
 
 post '/suckers' do
-  Sucker.create(params[:sucker])
-  session[:name] = params[sucker[:name]]
+  sucker = Sucker.create(params[:sucker])
+  session[:name] = sucker.display_name
   redirect '/thanks'
 end
 
