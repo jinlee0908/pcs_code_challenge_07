@@ -39,15 +39,9 @@ get '/' do
 end
 
 post '/suckers' do
-  if params.empty?
-    redirect '/'
-  else
-    @new_sucker = Sucker.new(params[:sucker])
-    #or
-    Sucker.create params[:sucker]
-    session[:name] = params[:sucker].name
-    redirect '/thanks'
-  end
+  Sucker.create params[:sucker]
+  session[:name] = params[:name]
+  redirect '/thanks'
 end
 
 get '/thanks' do
