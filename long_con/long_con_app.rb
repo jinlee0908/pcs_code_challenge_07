@@ -33,6 +33,6 @@ get '/suckers' do
 end
 
 get '/suckers/:id' do
-  @sucker = Sucker.find(params[:id])
+  @sucker = Sucker.get(params[:id].to_i)
   erb:suckers_specific
 end
