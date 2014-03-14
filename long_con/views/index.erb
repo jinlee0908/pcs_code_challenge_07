@@ -11,23 +11,15 @@
     <br>
     <p>Give us your deets and we'll let you in on the ground floor </p>
 
-   </div>   
+   </div>
 </div>
 
 <div class= "form">
-    <form action="suckers" method="POST"> <!-- enctype="multipart/form-data"> -->
-    
-    <!-- <input type="hidden" name="action" value="submit" required/> <br> -->
-    
-    <input name= "name" type="text" placeholder="What everbody calls you" required autofocus/> <br />
-
-    <input name="email" type="text" placeholder="Your@email.com" required/> <br />
-
-    <input name="twitter" type="text" placeholder="@Twitter" required/> <br />
-
-    <input name="phone" type="text" placeholder="Phone" required/> <br /> <br>
-
-    <input class="submit_button" type="submit" value="Press the button!"/>
-    
-    </form> 
+    <form action="suckers" method="POST">
+      <input name="sucker_name" type="text" placeholder="What everbody calls you" required autofocus/> <br />
+      <input name="sucker[email]" type="text" placeholder="Your@email.com" required/> <br />
+      <input name="sucker[twitter]" type="text" placeholder="@Twitter" required/> <br />
+      <input name="sucker_phone" type="text" placeholder="Phone" required/> <br /> <br>
+      <input class="submit_button" type="submit" value="Press the button!"/>
+    </form>
 </div>
