@@ -1,20 +1,10 @@
 # this module is parsing form data for the suckers
 module Parse
 
-# this is to take the sucker information (pieced) and break/clean it and then make it csv ready
-  def parse_stuff(name, phone, twitter, email)
-    @prefixes = ['Mrs.', 'Miss', 'Ms', 'Dr.', 'Mr.', 'mrs.', 'miss', 'ms', 'dr.', 'mr.']
-    @suffixes = ['DDS', 'MD', 'Sr.', 'IV', 'DVM', 'I', 'II', 'Jr.', 'V', 'III', 'Phd']
-    csv_ready = []
-    csv_ready << parse_names(@prefixes, @suffixes, name)
-    csv_ready << parse_numbers(phone)
-    csv_ready << parse_twitter(twitter)
-    csv_ready << parse_email(email)
-    csv_ready
-  end
-
 #take a name and then parses out the name into proper sections
-  def parse_names(prefixes, suffixes, name_string)
+  def parse_names(name_string)
+    prefixes = ['Mrs.', 'Miss', 'Ms', 'Dr.', 'Mr.', 'mrs.', 'miss', 'ms', 'dr.', 'mr.']
+    suffixes = ['DDS', 'MD', 'Sr.', 'IV', 'DVM', 'I', 'II', 'Jr.', 'V', 'III', 'Phd']
     parsed_name = { pre: '', first: '', middle: '', last: '', suffix: '' }
     word = name_string.split
     parsed_name[:suffix] = word.pop if suffixes.include? word.last
@@ -22,17 +12,17 @@ module Parse
     parsed_name[:pre] = word.shift if prefixes.include? word.first
     parsed_name[:first] = word.shift || word[0] = ''
     parsed_name[:middle] = word.shift || word[0] = ''
-    parsed_name.values
+    parsed_name
   end
 
   def parse_twitter(data)
     twitter = /\w+/
-    [twitter.match(data).to_s]
+    twitter.match(data).to_s
   end
 
   def parse_email(email_string)
     email_regex = /\w+\@\w+\.\w+/
-    email_regex.match(email_string) ? [email_string] : ['Not Found']
+    email_regex.match(email_string) ? email_string : 'Not Found'
   end
 
   def parse_numbers(numbers)
@@ -43,7 +33,7 @@ module Parse
     parse_number[:prefix] = num.shift
     parse_number[:line] = num.shift
     parse_number[:ext] = num.shift || num[0] = ''
-    parse_number.values
+    parse_number
   end
 
 end
