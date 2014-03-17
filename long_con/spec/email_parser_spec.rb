@@ -1,5 +1,5 @@
-require 'spec_helper'
-require './lib/parse.rb'
+require_relative 'spec_helper'
+require_relative '../lib/parse.rb'
 
 describe Parse do
   class ParseClass
