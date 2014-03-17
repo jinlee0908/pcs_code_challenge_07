@@ -2,12 +2,12 @@ require_relative 'long_con_test_helper.rb'
 require 'pry'
 
 before do
-  @test_data = {  params[:name] = 'Mrs. Theresa E. Stamm',
-                  params[:email] = 'kieran@runte.biz',
-                  params [:phone] = '1-678-523-6736',
-                  params[:twitter] = '@Reinger' }
+  @test_data = { name: 'Mrs. Theresa E. Stamm',
+                 email: 'kieran@runte.biz',
+                 phone: '1-678-523-6736',
+                 twitter: '@Reinger' }
 
-  @sucker = Sucker.new(@test_data)
+#  @sucker = Sucker.new(@test_data)
 end
 
 # test class
@@ -36,8 +36,10 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-    binding.pry
-    post '/suckers', @sucker
+    post '/suckers', { name: 'Mrs. Theresa E. Stamm',
+                 email: 'kieran@runte.biz',
+                 phone: '1-678-523-6736',
+                 twitter: '@Reinger' }
     follow_redirect!
     assert_equal suckers.last, { id: 1,
                       prefix_name: 'Mrs.',
