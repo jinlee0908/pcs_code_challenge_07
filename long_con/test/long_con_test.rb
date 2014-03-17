@@ -1,11 +1,13 @@
-require './long_con_test_helper.rb'
+require_relative 'long_con_test_helper.rb'
+require 'pry'
 
 before do
-  @test_data = { id: 1,
-                  name: 'Mrs. Theresa E. Stamm',
-                  email: 'kieran@runte.biz',
-                  phone: '1-678-523-6736',
-                  twitter: '@Reinger' }
+  @test_data = {  params[:name] = 'Mrs. Theresa E. Stamm',
+                  params[:email] = 'kieran@runte.biz',
+                  params [:phone] = '1-678-523-6736',
+                  params[:twitter] = '@Reinger' }
+
+  @sucker = Sucker.new(@test_data)
 end
 
 # test class
@@ -34,17 +36,19 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-    post '/suckers', @test_data
+    binding.pry
+    post '/suckers', @sucker
     follow_redirect!
-    assert_equal suckers.last, { prefix: 'Mrs.',
+    assert_equal suckers.last, { id: 1,
+                      prefix_name: 'Mrs.',
                       first_name: 'Theresa',
                       middle_name: 'E.',
                       last_name: 'Stamm',
                       suffix: '',
-                      country_code: 1,
-                      area_code: 678,
-                      prefix_code: 523,
-                      line: 6736,
+                      country_code: '1',
+                      area_code: '678',
+                      prefix_code: '523',
+                      line: '6736',
                       extension: '',
                       twitter: 'Reinger',
                       email: 'kieran@runte.biz' 
