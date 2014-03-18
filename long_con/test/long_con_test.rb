@@ -9,9 +9,9 @@ class MyTest < MiniTest::Unit::TestCase
   def app
     Sinatra::Application
   end
-  
+
   def setup
-    @params_hash = { 
+    @params_hash = {
       sucker: {
         name: 'Mrs. Theresa E. Stamm',
         email: 'kieran@runte.biz',
@@ -19,15 +19,14 @@ class MyTest < MiniTest::Unit::TestCase
         twitter: '@Reinger'
       }
     }
-
   end
 
   def test_long_con
     get '/'
     assert last_response.ok?
 
-    post '/suckers',@params_hash
-    sp = Sucker.create(@params_hash[:sucker])
+    post '/suckers', @params_hash
+    Sucker.create(@params_hash[:sucker])
     assert last_response.redirect?
 
     get '/suckers'
@@ -41,7 +40,7 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-    post '/suckers',@params_hash
+    post '/suckers', @params_hash
     s = Sucker.create(@params_hash[:sucker])
     follow_redirect!
     assert_equal 'Mrs.', s.prefix_name
@@ -56,7 +55,6 @@ class MyTest < MiniTest::Unit::TestCase
     assert_equal 'Reinger', s.twitter
     assert_equal 'kieran@runte.biz', s.email
   end
-
 
   def test_suckers_on_suckers_page
     get '/suckers'
