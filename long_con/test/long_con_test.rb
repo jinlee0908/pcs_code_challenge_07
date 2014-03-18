@@ -40,22 +40,23 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
+    current_count = Sucker.count
     post '/suckers', @params_hash
-    s = Sucker.create(@params_hash[:sucker])
     follow_redirect!
-    assert_equal 'Mrs.', s.prefix_name
-    assert_equal 'Theresa', s.first_name
-    assert_equal 'E.', s.middle_name
-    assert_equal 'Stamm', s.last_name
-    assert_equal '1', s.country_code
-    assert_equal '678', s.area_code
-    assert_equal '523', s.prefix_code
-    assert_equal '6736', s.line
-    assert_equal '', s.extension
-    assert_equal 'Reinger', s.twitter
-    assert_equal 'kieran@runte.biz', s.email
+    assert_equal current_count + 1, Sucker.count
+    assert_equal 'Mrs.', Sucker.last.prefix_name
+    assert_equal 'Theresa', Sucker.last.first_name
+    assert_equal 'E.', Sucker.last.middle_name
+    assert_equal 'Stamm', Sucker.last.last_name
+    assert_equal '1', Sucker.last.country_code
+    assert_equal '678', Sucker.last.area_code
+    assert_equal '523', Sucker.last.prefix_code
+    assert_equal '6736', Sucker.last.line
+    assert_equal '', Sucker.last.extension
+    assert_equal 'Reinger', Sucker.last.twitter
+    assert_equal 'kieran@runte.biz', Sucker.last.email
   end
-
+  
   def test_suckers_on_suckers_page
     get '/suckers'
     assert last_response.body.include?('kieran@runte.biz')
