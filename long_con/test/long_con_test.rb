@@ -40,23 +40,21 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-
-    post '/suckers', @params_hash
-    follow_redirect!
-    assert_equal suckers.last, { id: 1,
-                      prefix_name: 'Mrs.',
-                      first_name: 'Theresa',
-                      middle_name: 'E.',
-                      last_name: 'Stamm',
-                      suffix: '',
-                      country_code: '1',
-                      area_code: '678',
-                      prefix_code: '523',
-                      line: '6736',
-                      extension: '',
-                      twitter: 'Reinger',
-                      email: 'kieran@runte.biz' 
-                      }
+    # binding.pry
+    post '/suckers',@params_hash
+    s = Sucker.create(@params_hash[:sucker])
+    # follow_redirect!
+    assert_equal 'Mrs.', s.prefix_name
+    assert_equal 'Theresa', s.first_name
+    assert_equal 'E.', s.middle_name
+    assert_equal 'Stamm', s.last_name
+    assert_equal '1', s.country_code
+    assert_equal '678', s.area_code
+    assert_equal '523', s.prefix_code
+    assert_equal '6736', s.line
+    assert_equal '', s.extension
+    assert_equal 'Reinger', s.twitter
+    assert_equal 'kieran@runte.biz', s.email
   end
 
   def test_suckers_on_suckers_page
