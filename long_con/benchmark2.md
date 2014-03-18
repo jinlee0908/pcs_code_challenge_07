@@ -1,10 +1,10 @@
 Accept a new sucker when your CSV file is empty.
-Blocking		1.022ms  		 
+Blocking		1.022ms  		0.981ms 
 DSN Lookup		0.071ms 		 
 Connecting		0.223ms 		 
-Sending			0.114ms 		 
-Waiting			7.409ms 		
-Receiving		0.700ms 		 
+Sending			0.114ms 		0.277ms 
+Waiting			7.409ms 	   10.421ms	
+Receiving		0.700ms 		0.619ms 
 
 Accept a new sucker when your CSV file has 20 lines.
 Blocking		0.699ms 		 0.745ms
