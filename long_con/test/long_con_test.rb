@@ -1,6 +1,6 @@
 require_relative 'long_con_test_helper.rb'
+require 'data_mapper'
 require 'pry'
-
 
 # test class
 class MyTest < MiniTest::Unit::TestCase
@@ -9,7 +9,7 @@ class MyTest < MiniTest::Unit::TestCase
   def app
     Sinatra::Application
   end
-
+  
   def setup
     @params_hash = { 
       sucker: {
@@ -26,24 +26,24 @@ class MyTest < MiniTest::Unit::TestCase
     get '/'
     assert last_response.ok?
 
-    post '/suckers', @params_hash
+    post '/suckers',@params_hash
+    sp = Sucker.create(@params_hash[:sucker])
     assert last_response.redirect?
 
     get '/suckers'
     assert last_response.ok?
 
-    get '/suckers/:id'
-    assert last_response.ok?
+    # get '/suckers/:id'
+    # assert last_response.ok?
 
     get '/thanks'
     assert last_response.ok?
   end
 
   def test_sucker_added_to_database
-    # binding.pry
     post '/suckers',@params_hash
     s = Sucker.create(@params_hash[:sucker])
-    # follow_redirect!
+    follow_redirect!
     assert_equal 'Mrs.', s.prefix_name
     assert_equal 'Theresa', s.first_name
     assert_equal 'E.', s.middle_name
@@ -56,6 +56,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert_equal 'Reinger', s.twitter
     assert_equal 'kieran@runte.biz', s.email
   end
+
 
   def test_suckers_on_suckers_page
     get '/suckers'
@@ -71,6 +72,7 @@ class MyTest < MiniTest::Unit::TestCase
   def test_single_sucker_on_specific_page
     get '/suckers/2'
     assert last_response.body.include?('Keara Maggio')
+    assert last_response.ok?
   end
 
   def test_other_sucker_not_on_specific_page
