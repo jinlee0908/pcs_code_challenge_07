@@ -1,14 +1,6 @@
 require_relative 'long_con_test_helper.rb'
 require 'pry'
 
-before do
-  @test_data = { name: 'Mrs. Theresa E. Stamm',
-                 email: 'kieran@runte.biz',
-                 phone: '1-678-523-6736',
-                 twitter: '@Reinger' }
-
-#  @sucker = Sucker.new(@test_data)
-end
 
 # test class
 class MyTest < MiniTest::Unit::TestCase
@@ -18,11 +10,22 @@ class MyTest < MiniTest::Unit::TestCase
     Sinatra::Application
   end
 
+  def setup
+    @params_hash = { 
+      sucker: {
+        name: 'Mrs. Theresa E. Stamm',
+        email: 'kieran@runte.biz',
+        phone: '1-678-523-6736',
+        twitter: '@Reinger'
+      }
+    }
+  end
+
   def test_long_con
     get '/'
     assert last_response.ok?
 
-    post '/suckers'
+    post '/suckers', @params_hash
     assert last_response.redirect?
 
     get '/suckers'
@@ -36,10 +39,7 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-    post '/suckers', { name: 'Mrs. Theresa E. Stamm',
-                 email: 'kieran@runte.biz',
-                 phone: '1-678-523-6736',
-                 twitter: '@Reinger' }
+    post '/suckers', @params_hash
     follow_redirect!
     assert_equal suckers.last, { id: 1,
                       prefix_name: 'Mrs.',
