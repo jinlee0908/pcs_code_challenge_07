@@ -1,4 +1,4 @@
-require './long_con_test_helper.rb'
+require_relative 'long_con_test_helper.rb'
 require_relative '../lib/sucker.rb'
 require 'data_mapper'
 
