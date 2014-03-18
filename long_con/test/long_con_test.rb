@@ -10,7 +10,6 @@ class MyTest < MiniTest::Unit::TestCase
     Sinatra::Application
   end
 
-
   def setup
     @params_hash = { 
       sucker: {
@@ -20,23 +19,7 @@ class MyTest < MiniTest::Unit::TestCase
         twitter: '@Reinger'
       }
     }
-    
-    @data_base = {
-      sucker:{
-        prefix_name: 'Mrs.',
-        first_name: 'Theresa',
-        middle_name: 'E.',
-        last_name: 'Stamm',
-        suffix: '',
-        country_code: '1',
-        area_code: '678',
-        prefix_code: '523',
-        line: '6736',
-        extension: '',
-        twitter: 'Reinger',
-        email: 'kieran@runte.biz' 
-      }
-    }
+
   end
 
   def test_long_con
@@ -57,7 +40,7 @@ class MyTest < MiniTest::Unit::TestCase
   end
 
   def test_sucker_added_to_database
-    binding.pry
+
     post '/suckers', @params_hash
     follow_redirect!
     assert_equal suckers.last, { id: 1,
