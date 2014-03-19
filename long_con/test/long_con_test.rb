@@ -39,7 +39,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert last_response.ok?
   end
 
-  def test_sucker_added_to_database
+  def test_sucker_added_to_database # rubocop:disable MethodLength
     current_count = Sucker.count
     post '/suckers', @params_hash
     follow_redirect!
@@ -56,7 +56,7 @@ class MyTest < MiniTest::Unit::TestCase
     assert_equal 'Reinger', Sucker.last.twitter
     assert_equal 'kieran@runte.biz', Sucker.last.email
   end
-  
+
   def test_suckers_on_suckers_page
     get '/suckers'
     assert last_response.body.include?('kieran@runte.biz')

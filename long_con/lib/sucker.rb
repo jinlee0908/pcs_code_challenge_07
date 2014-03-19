@@ -18,7 +18,7 @@ class Sucker
   property :line, String
   property :extension, String
   property :twitter, String
-  property :email, String, :required => true
+  property :email, String, :required => true # rubocop:disable HashSyntax
   property :created_at, DateTime
 
   def initialize(params) # rubocop:disable MethodLength

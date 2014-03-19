@@ -1,7 +1,6 @@
 # this module is parsing form data for the suckers
 module Parse
-
-#take a name and then parses out the name into proper sections
+# take a name and then parses out the name into proper sections
   def parse_names(name_string)
     prefixes = ['Mrs.', 'Miss', 'Ms', 'Dr.', 'Mr.', 'mrs.', 'miss', 'ms', 'dr.', 'mr.']
     suffixes = ['DDS', 'MD', 'Sr.', 'IV', 'DVM', 'I', 'II', 'Jr.', 'V', 'III', 'Phd']
@@ -35,5 +34,4 @@ module Parse
     parse_number[:ext] = num.shift || num[0] = ''
     parse_number
   end
-
 end
